@@ -1,0 +1,148 @@
+import java.util.Scanner;
+public class fragarc {
+	
+	public static void inicializa (int[][] m){
+	for(int i=0; i<m.length; i++)
+		for(int j=0;j<m[0].length; j++)
+				m[i][j] = 0;
+}
+
+	public static void imprime (int[][] m){
+	for(int i=1; i<m.length-1; i++){
+			for(int j=1; j<m[0].length-1; j++)
+					System.out.print(m[i][j]+ " ");
+			System.out.println();
+	}
+}
+
+	public static int enteroAleat(){
+			return((int)(Math.random()*6))+1;
+	}
+	
+	public static void golpear(int [][] m){
+		Scanner in = new Scanner (System.in);
+		int j = 0;
+		int i = 0;
+		
+		System.out.println("Introduzca una fila: ");
+		int fil = in.nextInt();
+		System.out.println("Introduzca una columna: ");
+		int col = in.nextInt();
+		m[i][j] = m[fil][col];
+		m[fil][col]--;
+		m[fil-1][col]--;
+		m[fil+1][col]--;
+		m[fil][col-1]--;
+		m[fil][col+1]--;
+		
+		if(m[fil][col]<0){
+			m[fil][col] = 3;
+		}
+		if(m[fil-1][col]<0){
+			m[fil-1][col] = 3;
+		}
+		if(m[fil+1][col]<0){
+			m[fil+1][col] = 3;
+		}
+		if(m[fil][col-1]<0){
+			m[fil][col-1] = 3;
+		}
+		if(m[fil][col+1]<0){
+			m[fil][col+1] = 3;
+		}
+		
+}
+		
+	public static boolean vacio(int m [][], boolean a){
+		int i = 0;
+		int j = 0;
+		while(m[i][j]!=0){
+			for(i=1; i<m.length-1;i++){
+				for(j=1;j<m[0].length-1;j++){
+					
+				}
+			
+			}
+			
+		}
+	a = true;
+	return a;
+}
+	
+	public static void niveles(int m[][]){
+
+		Scanner in = new Scanner (System.in);
+		System.out.println("Introduce un nivel: ");
+		int n = in.nextInt();
+		int i, j;
+		for(i=0; i<m.length; i++)
+			for(j=0; j<m[0].length;j++)
+				m[i][j]=0;
+		
+		for(int k=0; k<n*3; k++){
+			i=enteroAleat();
+			j=enteroAleat();
+			m[i][j]=(m[i][j]+1)%4;
+			m[i-1][j]=(m[i-1][j]+1)%4;
+			m[i+1][j]=(m[i+1][j]+1)%4;
+			m[i][j-1]=(m[i][j-1]+1)%4;
+			m[i][j+1]=(m[i][j+1]+1)%4;
+			
+		}
+		if(n==1){
+			System.out.println("Dificultad: " + "Extremadamente facil");
+			System.out.println();
+		}
+		if(n==2){
+			System.out.println("Dificultad: " + "Muy facil");
+			System.out.println();
+		}
+		if(n==3){
+			System.out.println("Dificultad: " + "Facil");
+			System.out.println();
+		}	
+		if(n==4){
+			System.out.println("Dificultad: " + "Media baja");
+			System.out.println();
+		}		
+		if(n==5){
+			System.out.println("Dificultad: " + "Media alta");
+			System.out.println();
+		}		
+		if(n==6){
+			System.out.println("Dificultad: " + "Avanzada");
+			System.out.println();
+		}		
+		if(n==7){
+			System.out.println("Dificultad: " + "Algo dificil");
+			System.out.println();
+		}	
+		if(n==8){
+			System.out.println("Dificultad: " + "Dificil");
+			System.out.println();
+		}	
+		if(n==9){
+			System.out.println("Dificultad: " + "Muy dificil");
+			System.out.println();
+		}	
+	}	
+	
+	public static void main(String args[]){	
+		boolean a = false;
+		final int FIL=8, COL=8;
+		int [][] A = new int [FIL][COL];
+		inicializa(A);
+		niveles(A);
+		imprime(A);
+		golpear(A);
+		imprime(A);
+		while(a==false){
+		golpear(A);
+		imprime(A);
+		vacio(A, a);
+		
+		
+		}	
+	}
+}
+	
